@@ -1,3 +1,9 @@
 .nav-link {
   font-size: large;
 }
+
+h1 {
+  font-family: fantasy;
+  color: navy;
+  text-decoration-line: underline;
+}
