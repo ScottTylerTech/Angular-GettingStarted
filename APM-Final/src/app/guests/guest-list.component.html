@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+
+  <!--Filter-by box-->
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-4'>Filter Guests by:</div>
+      <div class='col-md-2'>
+        <input type='text' />
+      </div>
+    </div>
+  </div>
+
+  <!--Filter-by text-->
+  <div class="row">
+    <div class="col-md-4">
+      <h4 style="padding-left: 15%;">Filtered by: </h4>
+    </div>
+  </div>
+
+  <!--Guest List Table-->
+  <div class="table-responsive" style="padding-left: 5%;padding-right: 5%;">
+    <table class="table" *ngIf='guests.length'
+    >
+      <thead>
+        <tr>
+          <th>Guest Name</th>
+          <th style="text-align: center">Invite Sent</th>
+          <th style="text-align: center">RSVP</th>
+          <th style="text-align: center"> Number of Guests</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!--Table Body Auto-populate-->
+        <tr *ngFor='let guest of guests'>
+          <td>{{guest.name}}</td>
+          <td style="text-align: center">{{guest.invited? 'yes' : 'no'}}</td>
+          <td style="text-align: center">{{guest.rsvp ? 'yes' : 'no'}}</td>
+          <td style="text-align: center">{{guest.rsvp ? guest.numberofGuests : 0}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ProductDetailGuard } from './product-detail.guard';
 import { SharedModule } from '../shared/shared.module';
 
+
 @NgModule({
   declarations: [
     ProductListComponent,
@@ -24,4 +25,5 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule
   ]
 })
+
 export class ProductModule { }
