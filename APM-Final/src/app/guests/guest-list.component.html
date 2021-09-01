@@ -8,15 +8,16 @@
     <div class='row'>
       <div class='col-md-4'>Filter Guests by:</div>
       <div class='col-md-2'>
-        <input type='text' />
+        <input type='text'
+        [(ngModel)]='listFilter' />
       </div>
     </div>
   </div>
 
   <!--Filter-by text-->
   <div class="row">
-    <div class="col-md-4">
-      <h4 style="padding-left: 15%;">Filtered by: </h4>
+    <div>
+      <h4 style="padding-left: 15%;">Filtered by: {{listFilter}}</h4>
     </div>
   </div>
 
@@ -26,20 +27,41 @@
     >
       <thead>
         <tr>
+          <th class="td-center">
+            <button class="btn btn-primary" (click)='toggleImage()'>
+              {{showImage ? 'Hide' : 'Show'}}
+            </button>
+          </th>
           <th>Guest Name</th>
-          <th style="text-align: center">Invite Sent</th>
-          <th style="text-align: center">RSVP</th>
-          <th style="text-align: center"> Number of Guests</th>
+          <th class="td-center">Invite Sent</th>
+          <th class="td-center">
+            <button class="btn btn-primary" (click)='toggleRSVP()'>
+              {{onlyRSVP ? 'Only RSVP' : 'Show all' }}
+            </button>
+          </th>
+          <th class="td-center"> Number of Guests</th>
         </tr>
       </thead>
 
       <tbody>
         <!--Table Body Auto-populate-->
         <tr *ngFor='let guest of guests'>
-          <td>{{guest.name}}</td>
-          <td style="text-align: center">{{guest.invited? 'yes' : 'no'}}</td>
-          <td style="text-align: center">{{guest.rsvp ? 'yes' : 'no'}}</td>
-          <td style="text-align: center">{{guest.rsvp ? guest.numberofGuests : 0}}</td>
+            <td class="td-center" >
+              <div *ngIf='guest.rsvp && showImage'>
+                <img [src]='greenCheckUrl'
+                      [style.width.px]='imageWidth'>
+              </div>
+
+              <div *ngIf='!guest.rsvp && showImage'>
+                <img [src]='redCheckUrl'
+                      [style.width.px]='imageWidth'>
+              </div>
+
+            </td>
+            <td >{{guest.name}}</td>
+            <td class="td-center">{{guest.invited? 'yes' : 'no'}}</td>
+            <td class="td-center">{{guest.rsvp ? 'yes' : 'no'}}</td>
+            <td class="td-center">{{guest.rsvp ? guest.numberofGuests : 0}}</td>
         </tr>
 
       </tbody>
