@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { IGuest } from "./guests";
+import { GuestService } from "./guest.service";
 
 // decorator
 @Component
@@ -11,6 +12,8 @@ import { IGuest } from "./guests";
 
 // public export
 export class GuestListComponent implements OnInit{
+  constructor(private guestService: GuestService){}
+
   pageTitle: string = 'Guest List';
   greenCheckUrl: string = './assets/images/greencheck.png';
   redCheckUrl: string = './assets/images/redx.png';
@@ -57,62 +60,7 @@ export class GuestListComponent implements OnInit{
     return this._totalGuestAttending;
   }
 
-  guests: IGuest[] = [
-      {
-        "name": "George Washington",
-        "invited": true,
-        "rsvp": true,
-        "numberofGuests": 2
-      },
-      {
-        "name": "John Adams",
-        "invited": true,
-        "rsvp": true,
-        "numberofGuests": 2
-      },
-      {
-        "name": "Thomas Jeffereson",
-        "invited": true,
-        "rsvp": false,
-        "numberofGuests": 5
-      },
-      {
-        "name": "James Madison",
-        "invited": true,
-        "rsvp": true,
-        "numberofGuests": 1
-      },
-      {
-        "name": "James Monroe",
-        "invited": true,
-        "rsvp": true,
-        "numberofGuests": 2
-      },
-      {
-        "name": "John Adams",
-        "invited": true,
-        "rsvp": true,
-        "numberofGuests": 1
-      },
-      {
-        "name": "Andrew Jackson",
-        "invited": true,
-        "rsvp": false,
-        "numberofGuests": 3
-      },
-      {
-        "name": "Martin Van Buren",
-        "invited": true,
-        "rsvp": true,
-        "numberofGuests": 4
-      },
-      {
-        "name": "William Harrieson",
-        "invited": false,
-        "rsvp": false,
-        "numberofGuests": 1
-      }
-  ];
+  guests: IGuest[] = [];
 
   performNameFilter(filterBy: string): IGuest[] {
     filterBy = filterBy.toLowerCase();
@@ -195,7 +143,7 @@ export class GuestListComponent implements OnInit{
 
   // must be implemented from interface
   ngOnInit(): void{
-    this.listFilter = '';
-    console.log('onInit executed');
+    this.guests = this.guestService.getGuests();
+    this.filteredGuests = this.guests;
   }
 }
