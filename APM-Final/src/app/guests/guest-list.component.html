@@ -7,7 +7,7 @@
   <div class='card-body'>
     <div class='row'>
       <div class='col-md-4'>Filter Guests by:</div>
-      <div class='col-md-2'>
+      <div class='col-md-4'>
         <input type='text'
         [(ngModel)]='listFilter' />
       </div>
@@ -15,38 +15,68 @@
   </div>
 
   <!--Filter-by text-->
-  <div class="row">
-    <div>
-      <h4 style="padding-left: 15%;">Filtered by: {{listFilter}}</h4>
+  <div class="card-body">
+    <div class="table-responsive" style="padding-left: 5%;padding-right: 5%;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class='col-md-2'>
+              <button class="btn btn-primary" (click)='toggleRSVP()'>
+                {{onlyRSVP ? 'Show all' : 'Only RSVP'}}
+              </button>
+            </th>
+            <th class='col-md-2' style="text-align: left;">
+              Filtered by: {{listFilter}}
+            </th>
+          </tr>
+        </thead>
+      </table>
     </div>
-  </div>
+
 
   <!--Guest List Table-->
   <div class="table-responsive" style="padding-left: 5%;padding-right: 5%;">
-    <table class="table" *ngIf='guests.length'
-    >
+    <table class="table" *ngIf='guests.length'>
       <thead>
-        <tr>
-          <th class="td-center">
+        <tr class="td-center">
+          <th>
             <button class="btn btn-primary" (click)='toggleImage()'>
-              {{showImage ? 'Hide' : 'Show'}}
+              {{showImage ? 'Hide' : 'Quick Look'}}
             </button>
           </th>
-          <th>Guest Name</th>
-          <th class="td-center">Invite Sent</th>
-          <th class="td-center">
-            <button class="btn btn-primary" (click)='toggleRSVP()'>
-              {{onlyRSVP ? 'Only RSVP' : 'Show all' }}
+          <th>
+            <span style="padding-left: 5%;padding-right: 5%;">Guest Name</span>
+            <button class="btn-outline-secondary" (click)='sortGuestName()'>
+              <img [src]='filterUrl' [style.width.px]='15'>
             </button>
           </th>
-          <th class="td-center"> Number of Guests</th>
+          <th>
+            <span style="padding-left: 5%;padding-right: 5%;">Invite Sent</span>
+            <button class="btn-outline-secondary">
+              <img [src]='filterUrl' [style.width.px]='15'>
+            </button>
+          </th>
+          <th>
+            <span style="padding-left: 5%;padding-right: 5%;">RSVP</span>
+            <button class="btn-outline-secondary">
+              <img [src]='filterUrl' [style.width.px]='15'>
+            </button>
+          </th>
+          <th>
+            <span style="padding-left: 5%;padding-right: 5%;">Number of Guests</span>
+            <button class="btn-outline-secondary" (click)='sortNumberOfGuest()'>
+              <img [src]='filterUrl' [style.width.px]='15'>
+            </button>
+          </th>
         </tr>
       </thead>
 
       <tbody>
         <!--Table Body Auto-populate-->
-        <tr *ngFor='let guest of guests'>
-            <td class="td-center" >
+        <!--tr - table row          -->
+        <!--td - table data         -->
+        <tr class="td-center" *ngFor='let guest of filteredGuests'>
+            <td>
               <div *ngIf='guest.rsvp && showImage'>
                 <img [src]='greenCheckUrl'
                       [style.width.px]='imageWidth'>
@@ -58,14 +88,22 @@
               </div>
 
             </td>
-            <td >{{guest.name}}</td>
-            <td class="td-center">{{guest.invited? 'yes' : 'no'}}</td>
-            <td class="td-center">{{guest.rsvp ? 'yes' : 'no'}}</td>
-            <td class="td-center">{{guest.rsvp ? guest.numberofGuests : 0}}</td>
+            <td style="padding-left: 2.5%; text-align: left;">{{guest.name | titlecase}}</td>
+            <td>{{guest.invited? 'yes' : 'no'}}</td>
+            <td>{{guest.rsvp ? 'yes' : 'no'}}</td>
+            <td>{{guest.rsvp ? guest.numberofGuests : 0}}</td>
         </tr>
 
+        <!--Number of Guests Sum-->
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td style="font-weight: bold;">Total Guests: {{totalNumberOfGuests}}</td>
+        </tr>
       </tbody>
     </table>
   </div>
-
+</div>
 </div>

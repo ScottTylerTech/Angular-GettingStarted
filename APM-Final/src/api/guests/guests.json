@@ -15,7 +15,7 @@
     "name": "Thomas Jeffereson",
     "invited": true,
     "rsvp": false,
-    "numberofGuests": 0
+    "numberofGuests": 5
   },
   {
     "name": "James Madison",
@@ -39,7 +39,7 @@
     "name": "Andrew Jackson",
     "invited": true,
     "rsvp": false,
-    "numberofGuests": 0
+    "numberofGuests": 3
   },
   {
     "name": "Martin Van Buren",
@@ -51,6 +51,6 @@
     "name": "William Harrieson",
     "invited": true,
     "rsvp": false,
-    "numberofGuests": 0
+    "numberofGuests": 1
   }
 ]
