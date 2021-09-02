@@ -46,6 +46,17 @@ export class GuestListComponent implements OnInit{
     return this._totalNumberOfGuests;
   }
 
+  private _totalGuestAttending: number = 0;
+  get totalGuestsAttending(): number{
+    this._totalGuestAttending = 0;
+    for(const guest of this.filteredGuests){
+      if(guest.rsvp){
+        this._totalGuestAttending += guest.numberofGuests;
+      }
+    }
+    return this._totalGuestAttending;
+  }
+
   guests: IGuest[] = [
       {
         "name": "George Washington",
@@ -97,7 +108,7 @@ export class GuestListComponent implements OnInit{
       },
       {
         "name": "William Harrieson",
-        "invited": true,
+        "invited": false,
         "rsvp": false,
         "numberofGuests": 1
       }
@@ -130,12 +141,34 @@ export class GuestListComponent implements OnInit{
     }
   }
 
+  sortInviteSent(): void{
+    this.filteredGuests.sort((g1: IGuest, g2: IGuest) => {
+      return (g1.invited === g2.invited) ? 0 : g1.invited ? -1 : 1
+    });
+
+    this.filterInviteSent = !this.filterInviteSent;
+    if(this.filterInviteSent){
+      this.filteredGuests.reverse();
+    }
+  }
+
+  sortRSVP(): void{
+    this.filteredGuests.sort((g1: IGuest, g2: IGuest) => {
+      return (g1.rsvp === g2.rsvp) ? 0 : g1.rsvp ? -1 : 1
+      });
+
+    this.filterRSVP = !this.filterRSVP;
+    if(this.filterRSVP){
+      this.filteredGuests.reverse();
+    }
+  }
+
   sortNumberOfGuest(): void{
     this.filteredGuests.sort((g1: IGuest, g2: IGuest) => {
       if(g1.numberofGuests > g2.numberofGuests){
         return 1;
       }
-      if(g1.numberofGuests < g2.numberofGuests){
+      if(g1.numberofGuests <= g2.numberofGuests){
         return -1;
       }
       return 0;

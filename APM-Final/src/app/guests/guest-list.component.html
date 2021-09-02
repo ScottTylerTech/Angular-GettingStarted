@@ -52,13 +52,13 @@
           </th>
           <th>
             <span style="padding-left: 5%;padding-right: 5%;">Invite Sent</span>
-            <button class="btn-outline-secondary">
+            <button class="btn-outline-secondary" (click)='sortInviteSent()'>
               <img [src]='filterUrl' [style.width.px]='15'>
             </button>
           </th>
           <th>
             <span style="padding-left: 5%;padding-right: 5%;">RSVP</span>
-            <button class="btn-outline-secondary">
+            <button class="btn-outline-secondary" (click)='sortRSVP()'>
               <img [src]='filterUrl' [style.width.px]='15'>
             </button>
           </th>
@@ -91,7 +91,7 @@
             <td style="padding-left: 2.5%; text-align: left;">{{guest.name | titlecase}}</td>
             <td>{{guest.invited? 'yes' : 'no'}}</td>
             <td>{{guest.rsvp ? 'yes' : 'no'}}</td>
-            <td>{{guest.rsvp ? guest.numberofGuests : 0}}</td>
+            <td>{{guest.rsvp ? guest.numberofGuests : guest.numberofGuests}}</td>
         </tr>
 
         <!--Number of Guests Sum-->
@@ -99,8 +99,14 @@
           <td></td>
           <td></td>
           <td></td>
-          <td></td>
-          <td style="font-weight: bold;">Total Guests: {{totalNumberOfGuests}}</td>
+          <td style="font-weight: bold;text-align: left;">
+            <div>Total Guests:</div>
+            <div>Guests Attending:</div>
+          </td>
+          <td style="font-weight: bold;text-align: center;">
+            <div>{{totalNumberOfGuests}}</div>
+            <div>{{totalGuestsAttending}}</div>
+          </td>
         </tr>
       </tbody>
     </table>
