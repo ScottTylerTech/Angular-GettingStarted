@@ -15,6 +15,7 @@ export class GuestListComponent implements OnInit{
   constructor(private guestService: GuestService){}
 
   pageTitle: string = 'Guest List';
+  errorMessage: string = '';
   greenCheckUrl: string = './assets/images/greencheck.png';
   redCheckUrl: string = './assets/images/redx.png';
   filterUrl: string = './assets/images/filter.png';
@@ -143,7 +144,14 @@ export class GuestListComponent implements OnInit{
 
   // must be implemented from interface
   ngOnInit(): void{
-    this.guests = this.guestService.getGuests();
-    this.filteredGuests = this.guests;
+    this.guestService.getGuests().subscribe(
+      {next: guests => {
+         this.guests = guests;
+        this.filteredGuests = this.guests;
+      },
+      error: err => this.errorMessage = err
+    }
+    );
+
   }
 }
