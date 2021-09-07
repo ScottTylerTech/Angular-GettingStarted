@@ -7,7 +7,9 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { RouterModule } from '@angular/router';
 import { ProductModule } from './products/product.module';
+
 import { GuestModule } from './guests/guest.module';
+import { GuestDetailComponent } from './guests/guest-detail.component';
 
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
@@ -15,7 +17,8 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    GuestDetailComponent
   ],
   imports: [
     BrowserModule,
