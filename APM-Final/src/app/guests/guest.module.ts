@@ -12,7 +12,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     RouterModule.forChild([
       { path: 'guests', component: GuestListComponent },
-      { path: 'guests/:id', component: GuestListComponent }
+      { path: 'guests/:name', component: GuestListComponent }
     ]),
     SharedModule
   ]

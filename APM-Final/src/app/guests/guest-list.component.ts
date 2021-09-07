@@ -4,10 +4,13 @@ import { GuestService } from "./guest.service";
 import { Subscription } from "rxjs";
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
+
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+
 // decorator
 @Component
 ({
-  selector: 'pm-guest',
   templateUrl: './guest-list.component.html',
   styleUrls: ['./guest-list.component.css']
 })

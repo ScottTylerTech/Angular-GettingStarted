@@ -1,21 +1,17 @@
-.nav-link {
-  font-size: large;
-  color: #fdf0d5;
-}
-
-.navbar {
+.card {
   background-color: #003049;
   color: #fdf0d5;
 }
 
-.title {
-  background-color: #003049;
+.card-header {
+  background-color: #c1121f;
   color: #fdf0d5;
-  font-size: 200%;
+  font-size: x-large;
+  font-weight: bolder;
   text-align: center;
 }
 
-.body {
+.card-body {
   background-color: #003049;
   color: #fdf0d5;
 }

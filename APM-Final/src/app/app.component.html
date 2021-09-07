@@ -1,12 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="title">{{pageTitle}}</div>
-  <nav class='navbar navbar-expand navbar-light bg-dark'>
+<div class="body">
+  <nav class='navbar navbar-expand'>
     <a class='navbar-brand'></a>
-    <ul class='nav nav-pills'>
-      <li><a class='nav-link' routerLinkActive='active' routerLink='/welcome'>Home</a></li>
-      <li><a class='nav-link' routerLinkActive='active' routerLink='/guests'>Guest List</a></li>
-    </ul>
+      <ul class='nav nav-pills'>
+        <li><a class='nav-link' routerLinkActive='active' routerLink='/welcome'>Home</a></li>
+        <!--Not Implemented-->
+        <li><a class='nav-link' routerLinkActive='active' routerLink='/info'>Information</a></li>
+        <!--Not Implemented-->
+        <li><a class='nav-link' routerLinkActive='active' routerLink='/party'>Wedding Party</a></li>
+        <!--Not Implemented-->
+        <li><a class='nav-link' routerLinkActive='active' routerLink='/rsvp'>RSVP</a></li>
+        <li><a class='nav-link' routerLinkActive='active' routerLink='/guests'>Guest List</a></li>
+      </ul>
   </nav>
-<div class='container'>
-  <router-outlet></router-outlet>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
 </div>
+
+

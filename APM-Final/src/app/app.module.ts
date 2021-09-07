@@ -6,28 +6,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { RouterModule } from '@angular/router';
-import { ProductModule } from './products/product.module';
 
 import { GuestModule } from './guests/guest.module';
 import { GuestDetailComponent } from './guests/guest-detail.component';
+import { InformationComponent } from './info/information/information.component';
 
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    GuestDetailComponent
+    GuestDetailComponent,
+    InformationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: 'welcome', component: WelcomeComponent },
+      { path: 'welcome', component: WelcomeComponent }, // first match wins
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full' } //404
     ]),
     GuestModule
   ],
