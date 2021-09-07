@@ -10,7 +10,11 @@ import { IGuest } from "./guests";
 export class GuestService{
   // change url to point to webserver/ firebase
   private guestsUrl = 'api/guests/guests.json';
+  //private guestsUrl = 'https://wedding-guests-5a8cc-default-rtdb.firebaseio.com/';
   constructor(private http: HttpClient){}
+
+
+  //firebase.initializeApp();
 
   getGuests(): Observable<IGuest[]>{
     return this.http.get<IGuest[]>(this.guestsUrl).pipe(

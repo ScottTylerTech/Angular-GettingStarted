@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { IGuest } from "./guests";
 import { GuestService } from "./guest.service";
+import { Subscription } from "rxjs";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 // decorator
 @Component
@@ -11,11 +13,14 @@ import { GuestService } from "./guest.service";
 })
 
 // public export
-export class GuestListComponent implements OnInit{
+  // lifecycle hooks
+export class GuestListComponent implements OnInit, OnDestroy{
   constructor(private guestService: GuestService){}
 
   pageTitle: string = 'Guest List';
   errorMessage: string = '';
+  sub!: Subscription;
+
   greenCheckUrl: string = './assets/images/greencheck.png';
   redCheckUrl: string = './assets/images/redx.png';
   filterUrl: string = './assets/images/filter.png';
@@ -144,7 +149,7 @@ export class GuestListComponent implements OnInit{
 
   // must be implemented from interface
   ngOnInit(): void{
-    this.guestService.getGuests().subscribe(
+    this.sub = this.guestService.getGuests().subscribe(
       {next: guests => {
          this.guests = guests;
         this.filteredGuests = this.guests;
@@ -152,6 +157,9 @@ export class GuestListComponent implements OnInit{
       error: err => this.errorMessage = err
     }
     );
-
   }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe();
+  };
 }

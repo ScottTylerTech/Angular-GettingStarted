@@ -9,6 +9,9 @@ import { RouterModule } from '@angular/router';
 import { ProductModule } from './products/product.module';
 import { GuestModule } from './guests/guest.module';
 
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,4 +30,7 @@ import { GuestModule } from './guests/guest.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+
+}
